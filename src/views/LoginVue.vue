@@ -2,7 +2,7 @@
     <div class="login">
         <vue-particles id="tsparticles" :particlesInit="particlesInit" :options="options" />
         <div class="login-wrapper">
-            <div class="login-header">
+            <div class="login-header" :style="isMiniWidth ? `transform: scale(${zoom});` : ''">
                 <h2>Administrator</h2>
             </div>
             <div class="login-container">
@@ -38,6 +38,8 @@ export default {
         return {
             username: "",
             password: "",
+            isMiniWidth: false, // 是否小窗
+            zoom: 1,    // 小窗下，h2的缩放比例
             options: {
                 background: {
                     image: "url(" + require('@/assets/img/login-bg.jpg') + ")",
@@ -157,6 +159,7 @@ export default {
         }
     },
     methods: {
+        // 初始化粒子特效
         particlesInit(engine) {
             return loadFull(engine);
         },
@@ -192,7 +195,24 @@ export default {
                 this.$router.push("/"); // 跳转首页
                 this.$store.state.isLoading = false;
             }
-        }
+        },
+
+        // 判断是否小窗
+        changeWidth() {
+            if (window.innerWidth < 444) {
+                this.zoom = window.innerWidth * 0.9 / 400;
+                this.isMiniWidth = true;
+            } else {
+                this.isMiniWidth = false;
+            }
+        },
+    },
+    mounted() {
+        // 监听窗口大小变化，判断是否小窗
+        window.addEventListener('resize', this.changeWidth);
+    },
+    unmounted() {
+        window.removeEventListener('resize', this.changeWidth);
     }
 }
 </script>
@@ -200,8 +220,7 @@ export default {
 <style scoped>
 .login-wrapper {
     position: absolute;
-    min-width: 400px;
-    min-height: 300px;
+    width: 400px;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -228,8 +247,6 @@ export default {
 
 .login-container {
     position: relative;
-    min-width: 400px;
-    min-height: 300px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -305,5 +322,24 @@ export default {
 
 .tips a:hover {
     text-decoration: underline;
+}
+
+@media (max-width: 444px) {
+    .form-box {
+        padding: 10px 40px 20px 40px;
+    }
+
+    .login-wrapper {
+        width: 90vw;
+    }
+
+    .input-box {
+        margin: 18px 0;
+        height: 40px;
+    }
+    
+    .login-btn {
+        height: 40px;
+    }
 }
 </style>

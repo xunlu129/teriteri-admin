@@ -4,9 +4,52 @@
             <div class="menu-btn" @click="changeAsideStatus">
                 <el-icon size="24"><Expand v-if="asideStatus == 0" /><Fold v-else /></el-icon>
             </div>
-            <div class="avatar">
-                <img :src="user.avatar_url" :alt="`${user.nickname}的头像`">
-            </div>
+            <VPopover class="avatar-wrapper" trigger="click" pop-style="padding-top: 20px; transform: translateX(calc(-100% + 20px));">
+                <template #reference>
+                    <div class="avatar">
+                        <img :src="user.avatar_url" :alt="`${user.nickname}的头像`">
+                    </div>
+                </template>
+                <template #content>
+                    <div class="v-pop">
+                        <div class="v-pop-top">
+                            <div class="v-pop-top-content" @click="noPage">
+                                <div class="user-avatar">
+                                    <img :src="user.avatar_url" :alt="`${user.nickname}的头像`">
+                                </div>
+                                <div class="user-text">
+                                    <div class="nickname">{{ user.nickname }}</div>
+                                    <div class="description">{{ user.description }}</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="v-pop-middle">
+                            <div class="v-pop-item" @click="noPage">
+                                <i class="iconfont icon-zhanghu"></i>
+                                <span>个人账户</span>
+                            </div>
+                            <div class="v-pop-item" @click="noPage">
+                                <i class="iconfont icon-richeng"></i>
+                                <span>日程安排</span>
+                            </div>
+                            <div class="v-pop-item" @click="noPage">
+                                <i class="iconfont icon-tuandui"></i>
+                                <span>部门团队</span>
+                            </div>
+                            <div class="v-pop-item" @click="noPage">
+                                <i class="iconfont icon-bangzhu"></i>
+                                <span>帮助中心</span>
+                            </div>
+                        </div>
+                        <div class="v-pop-bottom">
+                            <div class="v-pop-item" @click="logout">
+                                <i class="iconfont icon-dengchu"></i>
+                                <span>退出登录</span>
+                            </div>
+                        </div>
+                    </div>
+                </template>
+            </VPopover>            
         </header>
         <aside
             class="admin-aside"
@@ -30,9 +73,14 @@
 
 <script>
 let hideTimer;
+import VPopover from '@/components/popover/VPopover.vue';
+import { ElMessage } from 'element-plus';
 
 export default {
     name: "IndexVue",
+    components: {
+        VPopover,
+    },
     data() {
         return {
             // 默认是大窗数值
@@ -150,6 +198,15 @@ export default {
             } else {
                 this.isMiniWidth = false;
             }
+        },
+
+        // 退出登录
+        logout() {
+            this.$store.dispatch("logout");
+        },
+
+        noPage() {
+            ElMessage.warning("该功能暂未开放");
         }
     },
     created() {
@@ -237,10 +294,14 @@ export default {
     background-color: var(--graph_bg_thin);
 }
 
+.avatar-wrapper {
+    border-radius: 50%;
+    margin: 0 8px;
+}
+
 .avatar {
     height: 40px;
     width: 40px;
-    margin: 0 8px;
     border-radius: 50%;
     cursor: pointer;
 }
@@ -250,6 +311,94 @@ export default {
     height: 100%;
     border-radius: 50%;
     object-fit: cover;
+}
+
+.v-pop {
+    position: relative;
+    width: 230px;
+}
+
+.v-pop-top, .v-pop-middle {
+    padding: 8px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.v-pop-bottom {
+    padding: 8px 0;
+}
+
+.v-pop-top-content {
+    display: flex;
+    align-items: center;
+    height: 80px;
+    cursor: pointer;
+    padding: 0 12px 0 16px;
+}
+
+.v-pop-top-content:hover {
+    background-color: var(--graph_bg_regular);
+}
+
+.user-avatar {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    flex: 0 0 auto;
+}
+
+.user-avatar img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+.user-text {
+    align-self: center;
+    overflow: hidden;
+    margin-left: 16px;
+}
+
+.nickname {
+    color: var(--text1);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 16px;
+    line-height: 1.5rem;
+    font-weight: 600;
+}
+
+.description {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: var(--text3);
+    font-size: 12px;
+    line-height: 1.5rem;
+}
+
+.v-pop-item {
+    height: 38px;
+    cursor: pointer;
+    color: var(--text2);
+    padding: 0 18px;
+    display: flex;
+    align-items: center;
+}
+
+.v-pop-item:hover {
+    color: var(--text1);
+    background-color: var(--graph_bg_regular);
+}
+
+.v-pop-item .iconfont {
+    color: var(--text1);
+    line-height: 38px;
+    margin-right: 18px;
+}
+
+.v-pop-item span {
+    line-height: 38px;
 }
 
 .admin-aside {

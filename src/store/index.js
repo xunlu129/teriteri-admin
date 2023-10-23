@@ -75,6 +75,7 @@ export default createStore({
             context.state.isLogin = false;
             // 清空user信息
             context.state.user = {};
+            router.push("/login");
             // 发送退出请求，处理redis中的缓存信息，不能用异步，不然token过期导致退出失败，后面步骤卡死
             axios.get("/api/admin/account/logout", {
                 headers: {
@@ -83,7 +84,6 @@ export default createStore({
             });
             // 清除本地token缓存
             localStorage.removeItem("teri_token");
-            router.push("/login");
         }
     }
 })
