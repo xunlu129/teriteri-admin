@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <router-view></router-view>
-    <div class="loading-mark" :class="isMarkShow ? 'show' : 'hide'" :style="`display: ${markDisplay};`">
+    <div class="loading-mask" :class="isMaskShow ? 'show' : 'hide'" :style="`display: ${maskDisplay};`">
       <div class="loading-box">
         <img src="~assets/img/loading.gif" alt="">
       </div>
@@ -16,8 +16,8 @@ export default {
   data() {
     return {
       // 加载蒙版的显隐过度
-      markDisplay: "none",
-      isMarkShow: false,
+      maskDisplay: "none",
+      isMaskShow: false,
     }
   },
   methods: {
@@ -30,13 +30,13 @@ export default {
 
     // 加载蒙版的延迟渲染效果
     show() {
-      this.markDisplay = "";
-      this.isMarkShow = true;
+      this.maskDisplay = "";
+      this.isMaskShow = true;
     },
     hide() {
-      this.isMarkShow = false;
+      this.isMaskShow = false;
       setTimeout(() => {
-        this.markDisplay = "none";
+        this.maskDisplay = "none";
       }, 200);
     }
   },
@@ -66,7 +66,7 @@ export default {
     background-color: var(--bg1);
 }
 
-.loading-mark {
+.loading-mask {
   position: fixed;
   top: 0;
   left: 0;
