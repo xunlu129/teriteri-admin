@@ -57,7 +57,106 @@
                     : asideStatus == 1 ? `transform: translateX(0%); transition: transform 0.3s;`
                     : `transform: translateX(${asideOffsetX}px);`"
         >
+            <div class="aside-top">
+                <a class="logo" href="http://localhost:8787" target="_blank">
+                    <img src="~assets/img/teriteri-pink.png" alt="">
+                </a>
+            </div>
+            <div class="aside-middle">
+                <el-menu :default-openeds="defOpenMenu" :default-active="active" class="nav-menu" router="true">
+                    <el-menu-item index="/home">
+                        <i class="iconfont icon-shouye1"></i>
+                        <span>首页</span>
+                    </el-menu-item>
+                    <el-menu-item index="/data">
+                        <i class="iconfont icon-shujuzhongxin"></i>
+                        <span>数据中心</span>
+                    </el-menu-item>
+                    <el-sub-menu index="/content">
+                        <template #title>
+                            <i class="iconfont icon-caidan"></i>
+                            <span>内容管理</span>
+                        </template>
+                        <el-menu-item index="/content/carousel">
+                            <i class="iconfont icon-lunbotu"></i>
+                            <span>轮播图管理</span>
+                        </el-menu-item>
+                        <el-menu-item index="/content/hot-search">
+                            <i class="iconfont icon-resou"></i>
+                            <span>热搜管理</span>
+                        </el-menu-item>
+                        <el-menu-item index="/content/ranking">
+                            <i class="iconfont icon-paihang"></i>
+                            <span>排行管理</span>
+                        </el-menu-item>
+                        <el-menu-item index="/content/tag">
+                            <i class="iconfont icon-biaoqian"></i>
+                            <span>标签管理</span>
+                        </el-menu-item>
+                    </el-sub-menu>
+                    <el-sub-menu index="/audit">
+                        <template #title>
+                            <i class="iconfont icon-caidan"></i>
+                            <span>审核管理</span>
+                        </template>
+                        <el-menu-item index="/audit/video">
+                            <i class="iconfont icon-shipinshenhe"></i>
+                            <span>视频审核</span>
+                        </el-menu-item>
+                        <el-menu-item index="/audit/article">
+                            <i class="iconfont icon-wenzhang"></i>
+                            <span>文章审核</span>
+                        </el-menu-item>
+                        <el-menu-item index="/audit/avatar">
+                            <i class="iconfont icon-touxiang"></i>
+                            <span>头像审核</span>
+                        </el-menu-item>
+                        <el-menu-item index="/audit/dynamic">
+                            <i class="iconfont icon-dongtai"></i>
+                            <span>动态审核</span>
+                        </el-menu-item>
+                        <el-menu-item index="/audit/comment">
+                            <i class="iconfont icon-pinglun"></i>
+                            <span>评论审核</span>
+                        </el-menu-item>
+                        <el-menu-item index="/audit/danmu">
+                            <i class="iconfont icon-danmu"></i>
+                            <span>弹幕审核</span>
+                        </el-menu-item>
+                    </el-sub-menu>
+                    <el-sub-menu index="/case">
+                        <template #title>
+                            <i class="iconfont icon-caidan"></i>
+                            <span>举报申诉</span>
+                        </template>
+                        <el-menu-item index="/case/report">
+                            <i class="iconfont icon-jubao"></i>
+                            <span>举报受理</span>
+                        </el-menu-item>
+                        <el-menu-item index="/case/appeal">
+                            <i class="iconfont icon-shensu"></i>
+                            <span>申诉受理</span>
+                        </el-menu-item>
+                    </el-sub-menu>
+                    <el-sub-menu index="/system">
+                        <template #title>
+                            <i class="iconfont icon-caidan"></i>
+                            <span>系统管理</span>
+                        </template>
+                        <el-menu-item index="/system/user">
+                            <i class="iconfont icon-yonghuguanli"></i>
+                            <span>用户管理</span>
+                        </el-menu-item>
+                        <el-menu-item index="/system/role">
+                            <i class="iconfont icon-guanliyuan"></i>
+                            <span>角色管理(超管专属)</span>
+                        </el-menu-item>
+                    </el-sub-menu>
+                </el-menu>
+            </div>
+            <div class="aside-bottom">
 
+            </div>
         </aside>
         <div class="masking" @click="changeAsideStatus"
             :style="asideStatus == 0 ? `display: ${maskingDisplay}; opacity: 0; transition: opacity 0.3s;`
@@ -66,7 +165,7 @@
                     : `display: ${maskingDisplay}; opacity: ${maskingOpacity};`"
         ></div>
         <main class="admin-main" :style="`padding-left: ${left}px;`">
-            内容
+            <router-view></router-view>
         </main>
     </div>
 </template>
@@ -91,6 +190,11 @@ export default {
             // 蒙版的显隐
             maskingDisplay: "none",
             maskingOpacity: 0,
+            active: "", // 侧栏活动项
+            path: ["/home", "/data", "/content/carousel", "/content/hot-search", "/content/ranking", "/audit/video",
+            "/audit/article", "/audit/avatar", "/audit/dynamic", "/audit/comment", "/audit/danmu", "/case/report",
+            "/case/appeal", "/system/role", "/system/user"],   // 用于判断当前活动页
+            defOpenMenu: ["/content", "/audit", "/case", "/system"],    // 默认展开的子菜单
         }
     },
     computed: {
@@ -216,6 +320,12 @@ export default {
             this.left = 0;
             this.asideStatus = 0;
             this.asideOffsetX = -256;
+        }
+        for (let i = 0; i < this.path.length; i++) {
+            if (this.$route.path.startsWith(this.path[i])) {
+                this.active = this.path[i].slice();
+                break;
+            }
         }
     },
     mounted() {
@@ -410,6 +520,54 @@ export default {
     background-color: #fff;
     box-shadow: 0 2px 10px -1px #55555514,0 1px 10px #5555550f,0 1px 30px #55555508;
     width: 256px;
+    display: flex;
+    flex-direction: column;
+}
+
+.aside-top {
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 20px 20px -20px #55555514, 0 20px 30px -20px #5555550f, 0 10px 30px -30px #55555508;
+    z-index: 2000;
+    flex: 1 0 auto;
+}
+
+.logo {
+    width: 200px;
+    cursor: pointer;
+}
+
+.logo img {
+    width: 100%;
+}
+
+.aside-middle {
+    flex: 0 1 auto;
+    height: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding: 16px 8px;
+}
+
+.aside-middle::-webkit-scrollbar {
+    width: 4px;
+}
+
+.aside-middle::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: #ddd;
+}
+
+.el-menu-item .iconfont, .el-sub-menu .iconfont {
+    font-size: 20px;
+    margin-right: 20px;
+}
+
+.el-menu-item:not(.is-active) .iconfont {
+    color: var(--text2);
 }
 
 .masking {
@@ -431,5 +589,30 @@ export default {
     padding-top: 64px;
     transition: padding-left 0.3s;
     background-color: #fafafa;
+}
+
+/* element 导航元素 */
+.el-menu {
+    border-right: unset !important;
+}
+
+.aside-middle {
+    --el-menu-active-color: var(--brand_pink);
+    --el-menu-level-padding: 40px;
+    --el-menu-item-height: 50px;
+}
+
+.aside-middle /deep/ .el-sub-menu__title, .el-menu-item {
+    height: var(--el-menu-item-height);
+    border-radius: 8px;
+    margin-bottom: 8px;
+}
+
+.el-menu-item.is-active {
+    background-color: var(--graph_bg_regular) !important;
+}
+
+.aside-middle /deep/ .el-sub-menu__title:hover, .el-menu-item:hover {
+    background-color: var(--graph_bg_thin) !important;
 }
 </style>
