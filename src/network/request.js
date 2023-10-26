@@ -70,7 +70,7 @@ export function get(url, config) {
   //   //参数列表
   //   params:{ id: id},
   //   //请求头配置  
-  //   headers:{ token: token }
+  //   headers:{ Authorization: token }
   // })
 
   if (config) {
@@ -152,9 +152,9 @@ export function post(url, data, headers) {
 
   // axios.post("http://xxx/xxx",
   //   //参数列表
-  //   { 'id': id },
+  //   { id: id },
   //   //请求头配置   
-  //   { headers: {'token':token }}
+  //   { headers: { Authorization:token }}
   // )
 
   // 如果 data 是 Content-Type: application/json ，后端要用 @RequestBody 接收

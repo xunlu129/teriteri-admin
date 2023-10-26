@@ -94,32 +94,32 @@
                             <span>标签管理</span>
                         </el-menu-item>
                     </el-sub-menu>
-                    <el-sub-menu index="/audit">
+                    <el-sub-menu index="/review">
                         <template #title>
                             <i class="iconfont icon-caidan"></i>
                             <span>审核管理</span>
                         </template>
-                        <el-menu-item index="/audit/video">
+                        <el-menu-item index="/review/video">
                             <i class="iconfont icon-shipinshenhe"></i>
                             <span>视频审核</span>
                         </el-menu-item>
-                        <el-menu-item index="/audit/article">
+                        <el-menu-item index="/review/article">
                             <i class="iconfont icon-wenzhang"></i>
                             <span>文章审核</span>
                         </el-menu-item>
-                        <el-menu-item index="/audit/avatar">
+                        <el-menu-item index="/review/avatar">
                             <i class="iconfont icon-touxiang"></i>
                             <span>头像审核</span>
                         </el-menu-item>
-                        <el-menu-item index="/audit/dynamic">
+                        <el-menu-item index="/review/dynamic">
                             <i class="iconfont icon-dongtai"></i>
                             <span>动态审核</span>
                         </el-menu-item>
-                        <el-menu-item index="/audit/comment">
+                        <el-menu-item index="/review/comment">
                             <i class="iconfont icon-pinglun"></i>
                             <span>评论审核</span>
                         </el-menu-item>
-                        <el-menu-item index="/audit/danmu">
+                        <el-menu-item index="/review/danmu">
                             <i class="iconfont icon-danmu"></i>
                             <span>弹幕审核</span>
                         </el-menu-item>
@@ -191,10 +191,10 @@ export default {
             maskingDisplay: "none",
             maskingOpacity: 0,
             active: "", // 侧栏活动项
-            path: ["/home", "/data", "/content/carousel", "/content/hot-search", "/content/ranking", "/audit/video",
-            "/audit/article", "/audit/avatar", "/audit/dynamic", "/audit/comment", "/audit/danmu", "/case/report",
+            path: ["/home", "/data", "/content/carousel", "/content/hot-search", "/content/ranking", "/review/video",
+            "/review/article", "/review/avatar", "/review/dynamic", "/review/comment", "/review/danmu", "/case/report",
             "/case/appeal", "/system/role", "/system/user"],   // 用于判断当前活动页
-            defOpenMenu: ["/content", "/audit", "/case", "/system"],    // 默认展开的子菜单
+            defOpenMenu: ["/content", "/review", "/case", "/system"],    // 默认展开的子菜单
         }
     },
     computed: {
@@ -571,7 +571,7 @@ export default {
 }
 
 .masking {
-    position: absolute;
+    position: fixed;
     z-index: 1007;
     width: 100vw;
     height: 100vh;

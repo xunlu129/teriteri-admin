@@ -1,12 +1,12 @@
 <template>
     <div>
-        数据中心
+        评论审核
     </div>
 </template>
 
 <script>
 export default {
-    name: "Data",
+    name: "CommentReview",
 }
 </script>
 

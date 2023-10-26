@@ -1,12 +1,12 @@
 <template>
     <div>
-        动态审核
+        文章审核
     </div>
 </template>
 
 <script>
 export default {
-    name: "DynamicAudit",
+    name: "ArticleReview",
 }
 </script>
 

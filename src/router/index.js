@@ -3,17 +3,17 @@ const Index = () => import("@/views/IndexVue.vue");
 const NotFound = () => import("@/views/NotFound.vue");
 const Login = () => import("@/views/LoginVue.vue");
 const Home = () => import("@/views/homePage/HomePage.vue");
-const Data = () => import("@/views/data/Data.vue");
+const Data = () => import("@/views/data/DataCenter.vue");
 const Carousel = () => import("@/views/content/CarouselManage.vue");
 const HotSearch = () => import("@/views/content/HotSearchManage.vue");
 const Ranking = () => import("@/views/content/RankingManage.vue");
 const Tag = () => import("@/views/content/TagManage.vue");
-const Video = () => import("@/views/audit/VideoAudit.vue");
-const Article = () => import("@/views/audit/ArticleAudit.vue");
-const Avatar = () => import("@/views/audit/AvatarAudit.vue");
-const Dynamic = () => import("@/views/audit/DynamicAudit.vue");
-const Comment = () => import("@/views/audit/CommentAudit.vue");
-const Danmu = () => import("@/views/audit/DanmuAudit.vue");
+const Video = () => import("@/views/review/VideoReview.vue");
+const Article = () => import("@/views/review/ArticleReview.vue");
+const Avatar = () => import("@/views/review/AvatarReview.vue");
+const Dynamic = () => import("@/views/review/DynamicReview.vue");
+const Comment = () => import("@/views/review/CommentReview.vue");
+const Danmu = () => import("@/views/review/DanmuReview.vue");
 const Report = () => import("@/views/case/ReportCase.vue");
 const Appeal = () => import("@/views/case/AppealCase.vue");
 const User = () => import("@/views/system/UserManage.vue");
@@ -40,15 +40,15 @@ const routes = [
         ]
       },
       {
-        path: '/audit',
-        redirect: '/audit/video',
+        path: '/review',
+        redirect: '/review/video',
         children: [
-          { path: '/audit/video', component: Video, meta: { requestAuth: true } },
-          { path: '/audit/article', component: Article, meta: { requestAuth: true } },
-          { path: '/audit/avatar', component: Avatar, meta: { requestAuth: true } },
-          { path: '/audit/dynamic', component: Dynamic, meta: { requestAuth: true } },
-          { path: '/audit/comment', component: Comment, meta: { requestAuth: true } },
-          { path: '/audit/danmu', component: Danmu, meta: { requestAuth: true } },
+          { path: '/review/video', component: Video, meta: { requestAuth: true } },
+          { path: '/review/article', component: Article, meta: { requestAuth: true } },
+          { path: '/review/avatar', component: Avatar, meta: { requestAuth: true } },
+          { path: '/review/dynamic', component: Dynamic, meta: { requestAuth: true } },
+          { path: '/review/comment', component: Comment, meta: { requestAuth: true } },
+          { path: '/review/danmu', component: Danmu, meta: { requestAuth: true } },
         ]
       },
       {
