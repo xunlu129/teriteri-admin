@@ -39,3 +39,27 @@
 .el-message-box {
     padding-bottom: 15px;
 }
+
+/*分页按钮悬停时样式*/
+.el-pagination.is-background .btn-next:hover,
+.el-pagination.is-background .btn-prev:hover,
+.el-pagination.is-background .el-pager li:not(.disabled):hover {
+    color: black !important;
+    background-color: #f4f4f4 !important;
+}
+
+/*当前选中分页按钮样式*/
+.el-pagination.is-background .el-pager li:not(.disabled).is-active {
+    background-color: var(--brand_pink) !important;
+    color: white !important;
+}
+
+/*分页的全部按钮的总体样式*/
+.el-pagination.is-background .btn-next,
+.el-pagination.is-background .btn-prev,
+.el-pagination.is-background .el-pager li {
+    background-color: #fff !important;
+    border: 1px solid #ddd;
+    font-weight: normal;
+    border-radius: 5px;
+}
