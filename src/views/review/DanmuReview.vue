@@ -1,12 +1,12 @@
 <template>
     <div>
-        评论审核
+        弹幕审核
     </div>
 </template>
 
 <script>
 export default {
-    name: "CommentAudit",
+    name: "DanmuReview",
 }
 </script>
 

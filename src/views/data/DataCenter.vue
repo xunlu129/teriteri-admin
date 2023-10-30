@@ -1,12 +1,12 @@
 <template>
     <div>
-        视频审核
+        数据中心
     </div>
 </template>
 
 <script>
 export default {
-    name: "VideoAudit",
+    name: "DataCenter",
 }
 </script>
 

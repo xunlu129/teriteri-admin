@@ -62,7 +62,6 @@ export default {
 <style>
 #app {
     margin: 0 auto;
-    max-width: 2560px;
     background-color: var(--bg1);
 }
 
