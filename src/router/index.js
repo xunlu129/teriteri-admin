@@ -9,6 +9,7 @@ const HotSearch = () => import("@/views/content/HotSearchManage.vue");
 const Ranking = () => import("@/views/content/RankingManage.vue");
 const Tag = () => import("@/views/content/TagManage.vue");
 const Video = () => import("@/views/review/VideoReview.vue");
+const VideoDetail = () => import("@/views/review/detail/VideoDetail.vue");
 const Article = () => import("@/views/review/ArticleReview.vue");
 const Avatar = () => import("@/views/review/AvatarReview.vue");
 const Dynamic = () => import("@/views/review/DynamicReview.vue");
@@ -43,7 +44,14 @@ const routes = [
         path: '/review',
         redirect: '/review/video',
         children: [
-          { path: '/review/video', component: Video, meta: { requestAuth: true } },
+          {
+            path: '/review/video',
+            redirect: '/review/video/form',
+            children: [
+              { path: '/review/video/form', component: Video, meta: { requestAuth: true } },
+              { path: '/review/video/detail/:vid', name: 'videoDetail', component: VideoDetail, meta: { requestAuth: true } },
+            ]
+          },
           { path: '/review/article', component: Article, meta: { requestAuth: true } },
           { path: '/review/avatar', component: Avatar, meta: { requestAuth: true } },
           { path: '/review/dynamic', component: Dynamic, meta: { requestAuth: true } },
