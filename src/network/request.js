@@ -58,7 +58,7 @@ export function get(url, config) {
         store.state.isLoading = false;
         router.push("/login");
       } else {
-        ElMessage.error("特丽丽被玩坏了");
+        ElMessage.error("特丽丽被玩坏了(¯﹃¯)");
         store.state.isLoading = false;
       }
     },
@@ -142,7 +142,7 @@ export function post(url, data, headers) {
         store.state.isLoading = false;
         router.push("/login");
       } else {
-        ElMessage.error("特丽丽被玩坏了");
+        ElMessage.error("特丽丽被玩坏了(¯﹃¯)");
         store.state.isLoading = false;
       }
     },
