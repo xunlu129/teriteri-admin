@@ -59,7 +59,13 @@
                                             </div>
                                         </td>
                                         <td style="min-width: 80px;">
-                                            <span class="detail-btn">详情</span>
+                                            <span
+                                                class="detail-btn"
+                                                @click="$router.push({
+                                                    name: 'videoDetail',
+                                                    params: {vid: item.video.vid}
+                                                })"
+                                            >详情</span>
                                         </td>
                                     </tr>
                                 </tbody>

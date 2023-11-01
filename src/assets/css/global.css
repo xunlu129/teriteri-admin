@@ -664,3 +664,18 @@ h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, cite, cod
 .text-left {
     text-align: left !important;
 }
+
+.v-text {
+    word-break: break-all;
+    white-space: pre-line;
+}
+
+.v-url {
+    cursor: pointer;
+    color: var(--brand_blue);
+    text-decoration: none;
+}
+
+.v-url:hover {
+    color: var(--Lb6);
+}

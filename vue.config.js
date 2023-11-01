@@ -10,7 +10,7 @@ module.exports = defineConfig({
         'components': '@/components',
         'network': '@/network',
         'views': '@/views',
-        'plugins': '@/plugins',
+        'utils': '@/utils',
       }
     }
   },
