@@ -3,8 +3,7 @@
         <div class="v-container">
             <div class="v-card">
                 <div class="video-table-card">
-                    <div class="v-table">
-                        <div class="v-table__wrapper" v-loading="loading">
+                    <div class="v-table" v-loading="loading">
                             <div class="top">
                                 <div class="navbar">
                                     <div class="bar-item" :class="videoStatus === 0 ? 'active' : ''" @click="changeStatus(0)">待审核</div>
@@ -15,15 +14,16 @@
                                     <div class="refresh" @click="reloadVideos">刷新</div>
                                     <div class="total">共 {{ total }} 条</div>
                                 </div>
-                            </div>                            
+                            </div>
+                        <div class="v-table__wrapper">
                             <table>
                                 <thead>
                                     <tr>
                                         <th style="min-width: 90px;">VID</th>
                                         <th style="min-width: 176px;">封面</th>
                                         <th style="min-width: 200px;">标题</th>
-                                        <th style="min-width: 150px;">投稿用户</th>
-                                        <th style="min-width: 160px;">分区</th>
+                                        <th style="min-width: 120px;">投稿用户</th>
+                                        <th style="min-width: 180px;">分区</th>
                                         <th style="min-width: 150px;">投稿时间</th>
                                         <th style="min-width: 100px;">状态</th>
                                         <th style="min-width: 80px;"></th>
@@ -39,7 +39,7 @@
                                         <td style="min-width: 120px;">
                                             <span class="nickname">{{ item.user.nickname }}</span>
                                         </td>
-                                        <td style="min-width: 160px;">
+                                        <td style="min-width: 180px;">
                                             <span class="category" style="background-color: #ffd024;">{{ item.category.mcName }}</span> → 
                                             <span class="category" style="background-color: #3ad2f0;">{{ item.category.scName }}</span>
                                         </td>
@@ -262,6 +262,14 @@ export default {
 
 .refresh:hover {
     color: var(--Lb6);
+}
+
+.v-table__wrapper {
+    height: calc(100% - 150px);
+}
+
+.v-table__wrapper table {
+    padding: 0 4px 8px;
 }
 
 .cover {
