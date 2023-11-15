@@ -61,7 +61,7 @@
                                         <td style="min-width: 80px;">
                                             <span
                                                 class="detail-btn"
-                                                @click="$router.push({
+                                                @click="openNewPage({
                                                     name: 'videoDetail',
                                                     params: {vid: item.video.vid}
                                                 })"
@@ -181,6 +181,11 @@ export default {
             } else {
                 this.pagerCount = 7;
             }
+        },
+
+        // 打开新标签页
+        openNewPage(route) {
+            window.open(this.$router.resolve(route).href, '_blank');
         },
     },
     async created() {

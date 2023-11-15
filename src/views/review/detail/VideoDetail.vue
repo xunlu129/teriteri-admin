@@ -107,7 +107,7 @@ export default {
                 },
             });
             if (res.data.data) {
-                console.log("视频详情: ", res.data.data);
+                // console.log("视频详情: ", res.data.data);
                 this.video = res.data.data.video;
                 this.user = res.data.data.user;
                 this.category = res.data.data.category;
@@ -217,7 +217,7 @@ export default {
 
 .player {
     box-shadow: 2px 2px 10px #0000003f;
-    background-color: dimgray;
+    background-color: black;
     width: 100%;
 }
 
