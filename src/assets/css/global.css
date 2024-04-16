@@ -593,7 +593,6 @@ h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, cite, cod
 }
 
 .v-table__wrapper {
-    height: calc(100% - 80px);
     border-radius: inherit;
     overflow: auto;
 }

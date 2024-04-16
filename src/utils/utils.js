@@ -41,8 +41,51 @@ export function returnSecond(time) {
 export function handleNum(num) {
     if (num > 10000) {
         num = (num / 10000).toFixed(1);
-        return num + 'w';
+        return num + '万';
     } else {
         return num;
     }
+}
+
+
+/**
+ * 处理日期，截取月日或者24小时内或者60分钟内
+ * @param {String} dateTime 
+ * @returns 
+ */
+export function handleDate(dateTime) {
+    const currentDate = new Date();
+    const inputDate = new Date(dateTime);
+    // 计算时间差（以毫秒为单位）
+    const timeDifference = currentDate - inputDate;
+    if (timeDifference < 60 * 60 * 1000) {
+        const minutes = Math.floor(timeDifference / 1000 / 60);
+        return `${minutes}分钟前`;
+    } else if (timeDifference < 24 * 60 * 60 * 1000) {
+        const hours = Math.floor(timeDifference / 1000 / 60 / 60);
+        return `${hours}小时前`;
+    } else {
+        const month = inputDate.getMonth() + 1; // 月份是从0开始的
+        const day = inputDate.getDate();
+        return `${month}-${day}`;
+    }
+}
+
+
+/**
+ * 计算昵称长度，中日文字符占2长度，其他1长度，用于判断昵称长度是否超出24的限制
+ * @param {String} nickname 
+ * @returns 
+ */
+export function getNicknameLength(nickname) {
+    let length = 0;  
+    for (let i = 0; i < nickname.length; i++) {
+        // 使用正则表达式检测字符是否为中文或日文
+        if (/[\u4e00-\u9fa5\u0800-\u4e00]/.test(nickname[i])) {
+            length += 2;
+        } else {
+            length += 1;
+        }
+    }
+    return length;
 }
