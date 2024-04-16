@@ -208,7 +208,7 @@ export default {
 
 <style scoped>
 .video-table-card {
-    height: 750px;
+    height: calc(100vh - 96px);
     position: relative;
     overflow: hidden !important;
     overflow-anchor: none;
